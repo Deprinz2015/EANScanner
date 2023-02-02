@@ -5,3 +5,5 @@
     -> Shareholders etc
 - https://docs.expo.dev/versions/latest/sdk/bar-code-scanner/
     -> React Native BarCode Scanner
+- https://reactnative.dev/docs/getting-started
+    -> React Native Tutorial
