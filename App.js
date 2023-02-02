@@ -1,10 +1,10 @@
 import {StyleSheet, View} from 'react-native';
-import Cat from "./Components/Cat";
+import EANInput from "./Components/EANInput";
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <Cat></Cat>
+            <EANInput></EANInput>
         </View>
     );
 }
