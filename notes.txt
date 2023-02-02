@@ -3,3 +3,5 @@
 - https://www.sec.gov/edgar/sec-api-documentation
     -> Business Information
     -> Shareholders etc
+- https://docs.expo.dev/versions/latest/sdk/bar-code-scanner/
+    -> React Native BarCode Scanner
