@@ -1,0 +1,5 @@
+- https://www.ean-search.org/ean-database-api.html
+    -> EAN Search Database
+- https://www.sec.gov/edgar/sec-api-documentation
+    -> Business Information
+    -> Shareholders etc
