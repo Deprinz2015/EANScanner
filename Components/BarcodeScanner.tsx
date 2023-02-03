@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {Text} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import {BarCodeScanner} from 'expo-barcode-scanner';
 
-export default function BarcodeScanner() {
+type BarcodeScannerProps = {
+    onScanned: (data) => {},
+    onReset: () => {},
+}
+
+function BarcodeScanner(props: BarcodeScannerProps) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
 
@@ -17,7 +22,15 @@ export default function BarcodeScanner() {
 
     const handleBarCodeScanned = ({type, data}) => {
         setScanned(true);
-        alert(`Barcode scanned: ${type} -> ${data}`);
+        console.log(type);
+        console.log(data);
+
+        props.onScanned(data);
+    };
+
+    const handleReset = () => {
+        setScanned(false);
+        props.onReset();
     };
 
     if (hasPermission === null) {
@@ -28,10 +41,24 @@ export default function BarcodeScanner() {
     }
 
     return (
-        <BarCodeScanner
-            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-            style={{flex: 1}}
-        />
+        <View style={styles.scanner_container}>
+            <BarCodeScanner
+                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                style={styles.barcode_scanner}
+                barCodeTypes={[BarCodeScanner.Constants.BarCodeType.ean13, BarCodeScanner.Constants.BarCodeType.ean8]}
+            />
+            {scanned && <Button title={'Tap to scan again'} onPress={handleReset}/>}
+        </View>
     );
 }
 
+const styles = StyleSheet.create({
+    scanner_container: {
+        flex: 1,
+    },
+    barcode_scanner: {
+        flex: 1
+    }
+});
+
+export default BarcodeScanner;

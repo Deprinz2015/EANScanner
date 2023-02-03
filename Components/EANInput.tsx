@@ -21,7 +21,7 @@ const EANInput = () => {
 
 const styles = StyleSheet.create({
     input_container: {
-        flex: 2
+        flex: 1
     },
     input: {
         height: 40,
