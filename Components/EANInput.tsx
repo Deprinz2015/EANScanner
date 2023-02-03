@@ -5,7 +5,7 @@ const EANInput = () => {
     const [ean, setEan] = useState('');
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.input_container}>
             <TextInput
                 style={styles.input}
                 keyboardType="number-pad"
@@ -20,6 +20,9 @@ const EANInput = () => {
 };
 
 const styles = StyleSheet.create({
+    input_container: {
+        flex: 2
+    },
     input: {
         height: 40,
         margin: 12,
