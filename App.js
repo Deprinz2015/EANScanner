@@ -4,7 +4,7 @@ import EANInput from "./Components/EANInput";
 import ProductInfo from "./Components/ProductInfo";
 import {useState} from "react";
 
-export default function App() {
+const App = () => {
     const initialItemState = {
         ean: null,
         name: null,
@@ -14,32 +14,45 @@ export default function App() {
     const [ean, setEan] = useState('');
     const [item, setItem] = useState(initialItemState);
 
-    function onScan(data) {
+    const onScan = (data) => {
         console.log('Scanned Data: ' + data);
 
-        let updatedValue = {ean: data};
+        setEan(data);
+    };
+
+    const onSearch = (result) => {
+        console.log('Searched Data: ' + result);
+
+        const updatedItem = {
+            ean: result.ean,
+            name: result.name,
+            manufacturer: result.manufacturer
+        }
 
         setItem(item => ({
             ...item,
-            ...updatedValue
+            ...updatedItem
         }));
-    }
+    };
 
     const reset = () => {
         setItem(initialItemState);
+        setEan('');
     };
 
     return (
         <View style={styles.container}>
             <BarcodeScanner onScanned={onScan} onReset={reset} />
-            <EANInput />
+            <EANInput ean={ean} setEan={setEan} onSearch={onSearch} />
             <ProductInfo ean={item.ean} name={item.name} manufacturer={item.manufacturer} />
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1
     }
 });
+
+export default App;

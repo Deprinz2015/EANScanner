@@ -1,8 +1,31 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, SafeAreaView, StyleSheet, TextInput} from "react-native";
 
-const EANInput = () => {
-    const [ean, setEan] = useState('');
+type EANInputProps = {
+    ean: string,
+    setEan,
+    onSearch: (result: EANResponse) => {}
+};
+
+type EANResponse = {
+    ean: string,
+    name: string,
+    manufacturer: string
+}
+
+const EANInput = (props: EANInputProps) => {
+    const search = () => {
+        alert('EAN Search executed');
+
+        // TODO API Request
+        const dummyResponse: EANResponse = {
+            ean: props.ean,
+            name: 'Deo Loyal Man',
+            manufacturer: 'Bruno Banani'
+        };
+
+        props.onSearch(dummyResponse);
+    };
 
     return (
         <SafeAreaView style={styles.input_container}>
@@ -10,11 +33,11 @@ const EANInput = () => {
                 style={styles.input}
                 keyboardType="number-pad"
                 placeholder="EAN"
-                onChangeText={setEan}
+                onChangeText={props.setEan}
                 maxLength={13}
-                value={ean}
+                value={props.ean}
             />
-            <Button title={'Search'}></Button>
+            <Button title={'Search'} onPress={search}></Button>
         </SafeAreaView>
     );
 };
