@@ -21,7 +21,7 @@ const App = () => {
     };
 
     const onSearch = (result) => {
-        console.log('Searched Data: ' + result);
+        console.log('Searched Data: ' + JSON.stringify(result));
 
         const updatedItem = {
             ean: result.ean,
